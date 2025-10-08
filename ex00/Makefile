@@ -6,7 +6,7 @@
 #    By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/10 10:00:21 by uschmidt          #+#    #+#              #
-#    Updated: 2025/10/08 09:46:13 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/10/08 10:23:39 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ vpath %.cpp $(SRC_FOLDER)
 CFILES += main.cpp
 
 DEPS := Easyfind/$(NAME).hpp
+DEPS := Easyfind/$(NAME).tpp
 
 OFILES      = $(addprefix $(OBJ_FOLDER), $(notdir $(CFILES:.cpp=.o)))
 
