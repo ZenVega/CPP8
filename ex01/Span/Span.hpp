@@ -20,7 +20,7 @@ class Span
 {
 	private:
 		unsigned int	_size;
-		std::vector<int> _span;
+		std::vector<int> _data;
 
 	public:
 		Span();
@@ -35,12 +35,12 @@ class Span
 
 		class SpanFilledException: public std::exception 
 		{
-			virtual const char * watch() const throw();
+			virtual const char * what() const throw();
 		};
 
 		class FewElementsException: public std::exception 
 		{
-			virtual const char * watch() const throw();
+			virtual const char * what() const throw();
 		};
 };
 #endif

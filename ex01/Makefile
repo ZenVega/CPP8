@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= easyfind
+NAME		= span
 
 SRC_FOLDER	= ./
 OBJ_FOLDER	= build/
@@ -19,8 +19,10 @@ CFILES		:=
 vpath %.cpp $(SRC_FOLDER)
 CFILES += main.cpp
 
-DEPS := Easyfind/$(NAME).hpp
-DEPS := Easyfind/$(NAME).tpp
+vpath %.cpp Span
+CFILES += Span.cpp
+
+DEPS := Span/Span.hpp
 
 OFILES      = $(addprefix $(OBJ_FOLDER), $(notdir $(CFILES:.cpp=.o)))
 

@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Easyfind/easyfind.hpp"
-#include <vector>
+#include "Span/Span.hpp"
 #include <iostream>
 #include <exception>
 
@@ -20,22 +19,38 @@ using std::endl;
 
 int main(void)
 {
-	size_t size = 10;
-	std::vector<int> v(size);
-
-	for (size_t i = 0; i < size; i++)
-		v[i] = i;
-
+	Span emptySpan = Span();
 	try {
-		std::vector<int>::iterator it;
-		it = easyfind(v, 3);
-		cout << "Item found at position: " << std::distance(v.begin(), it) << endl;
-		it = easyfind(v, size);
-		cout << "Item found at position: " << std::distance(v.begin(), it) << endl;
+		emptySpan.addNumber(3);
 	}
 	catch (std::exception &e)
 	{
-		cout << e.what() << endl;
+		cout << "Exception caught: " << e.what() << endl;
 	}
+
+	Span span = Span(5);
+	try {
+		span.addNumber(3);
+		span.addNumber(-3003);
+		span.addNumber(903);
+		span.addNumber(-3234003);
+		span.addNumber(0);
+		span.addNumber(-33);
+	}
+	catch (std::exception &e)
+	{
+		cout << "Exception caught: " << e.what() << endl;
+	}
+	try {
+		cout << "The shortest span is: " << span.shortestSpan() << endl;
+		cout << "The longest span is: " << span.longestSpan() << endl;
+		emptySpan.longestSpan();
+	}
+	catch (std::exception &e)
+	{
+		cout << "Exception caught: " << e.what() << endl;
+	}
+
+
 	return 0;
 }

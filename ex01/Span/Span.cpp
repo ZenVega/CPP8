@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#include <bits/stdc++.h>
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <limits.h>
+#include <cmath>
 
 bool comp(int a, int b) {
-    return a > b;
+    return a < b;
 }
 
 Span::Span(): _size(0){};
@@ -34,48 +35,54 @@ Span &Span::operator=(const Span &other)
 	if (this != &other)
 	{
 		_size = other._size;
-		_span = other._span;
+		_data = other._data;
 	}
 	return (*this);
 }
 
 void	Span::addNumber(int num)
 {
-	if (_span.size() >= _size)
+	if (_size == 0 || _data.size() >= _size)
 		throw SpanFilledException();
-	_span.push_back(num);
+	_data.push_back(num);
 }
 
 int	Span::shortestSpan(void) const 
 {
-	if (_span.size() < 2)
+	std::vector<int> data_copy = _data;
+	if (data_copy.size() < 2)
 		throw Span::FewElementsException();
-	int shortest_span = INT_MAX;
-	std::sort(_span.begin(), _span.end(), comp);
-	std::vector<int>::const_iterator first = _span.begin();
-	std::vector<int>::const_iterator last = _span.end();
+	int shortestdata_copy = INT_MAX;
+	std::sort(data_copy.begin(), data_copy.end(), comp);
+	std::vector<int>::const_iterator first = data_copy.begin();
+	std::vector<int>::const_iterator last = data_copy.end();
 	while (first != last - 1)
-		if (*(first + 1) - *first < shortest_span)
-			shortest_span = *(first + 1) - *first; 
-	return shortest_span;
+	{
+		if (std::abs(*(first + 1) - *first) < shortestdata_copy)
+			shortestdata_copy = std::abs(*(first + 1) - *first); 
+		first++;
+	}
+	return shortestdata_copy;
 }
 
 int	Span::longestSpan(void) const 
 {
-	if (_span.size() < 2)
+	std::vector<int> data_copy = _data;
+	if (data_copy.size() < 2)
 		throw Span::FewElementsException();
-	std::sort(_span.begin(), _span.end(), comp);
-	std::vector<int>::const_iterator first = _span.begin();
-	std::vector<int>::const_iterator last = _span.end();
+	std::sort(data_copy.begin(), data_copy.end(), comp);
+	std::vector<int>::const_iterator first = data_copy.begin();
+	std::vector<int>::const_iterator last = data_copy.end();
+
 	return *last - *first;
 }
 
-const char *Span::SpanFilledException::watch() const throw()
+const char *Span::SpanFilledException::what() const throw()
 {
 	return "Index outside Span";
 }
 
-const char *Span::FewElementsException::watch() const throw()
+const char *Span::FewElementsException::what() const throw()
 {
 	return "Index outside Span";
 }
