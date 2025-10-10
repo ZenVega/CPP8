@@ -59,5 +59,14 @@ int main(void)
 	std::cout << *it_l << std::endl;
 	++it_l;
 	}
+	std::cout << "Reverse iterstor" << std::endl;
+
+	MutantStack<int>::reverse_iterator it_r = mstack.rbegin();
+	MutantStack<int>::reverse_iterator ite_r = mstack.rend();
+	while (it_r != ite_r)
+	{
+	std::cout << *it_r << std::endl;
+	++it_r;
+	}
 	return 0;
 }

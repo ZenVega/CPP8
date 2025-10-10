@@ -54,3 +54,27 @@
 	{
 		return (std::stack<T>::c.end());
 	};
+
+	template <typename T>
+	typename std::stack<T>::container_type::reverse_iterator MutantStack<T>::rbegin()
+	{
+		return (std::stack<T>::c.rbegin());
+	};
+
+	template <typename T>
+	typename std::stack<T>::container_type::reverse_iterator MutantStack<T>::rend()
+	{
+		return (std::stack<T>::c.rend());
+	};
+
+	template <typename T>
+	typename std::stack<T>::container_type::const_reverse_iterator MutantStack<T>::rbegin() const
+	{
+		return (std::stack<T>::c.rbegin());
+	};
+
+	template <typename T>
+	typename std::stack<T>::container_type::const_reverse_iterator MutantStack<T>::rend() const
+	{
+		return (std::stack<T>::c.rend());
+	};
