@@ -1,0 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MutantStack.tpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/10 10:24:20 by uschmidt          #+#    #+#             */
+/*   Updated: 2025/10/10 12:05:30 by uschmidt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "MutantStack.hpp"
+
+	template <typename T>
+	MutantStack<T>::MutantStack(): std::stack<T>(){};
+
+	template <typename T>
+	MutantStack<T>::MutantStack(const MutantStack &other): std::stack<T>(other){};
+
+	template <typename T>
+	MutantStack<T>::~MutantStack(){};
+
+	template <typename T>
+	MutantStack<T> &MutantStack<T>::operator=(const MutantStack &other)
+	{
+		if (this != &other)
+				std::stack<T>::operator=(other);
+			return (*this);
+	};
+
+	template <typename T>
+	//'container_type' accesses the underlying container type
+	typename std::stack<T>::container_type::iterator MutantStack<T>::begin()
+	{
+		//'c' accesses the underlying container
+		return (std::stack<T>::c.begin());
+	};
+
+	template <typename T>
+	typename std::stack<T>::container_type::iterator MutantStack<T>::end()
+	{
+		return (std::stack<T>::c.end());
+	};
+
+	template <typename T>
+	typename std::stack<T>::container_type::const_iterator MutantStack<T>::begin() const
+	{
+		return (std::stack<T>::c.begin());
+	};
+
+	template <typename T>
+	typename std::stack<T>::container_type::const_iterator MutantStack<T>::end() const
+	{
+		return (std::stack<T>::c.end());
+	};

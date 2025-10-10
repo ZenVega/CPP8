@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <limits.h>
 #include <cmath>
+#include <iostream>
 
 bool comp(int a, int b) {
     return a < b;
@@ -47,6 +48,14 @@ void	Span::addNumber(int num)
 	_data.push_back(num);
 }
 
+void Span::addRange( std::vector<int>::iterator start, std::vector<int>::iterator finish)
+{
+	int len = finish - start;
+	if (_size == 0 || _data.size() >= _size - len)
+		throw SpanFilledException();
+	_data.insert(_data.end(), start, finish);
+}
+
 int	Span::shortestSpan(void) const 
 {
 	std::vector<int> data_copy = _data;
@@ -74,7 +83,7 @@ int	Span::longestSpan(void) const
 	std::vector<int>::const_iterator first = data_copy.begin();
 	std::vector<int>::const_iterator last = data_copy.end();
 
-	return *last - *first;
+	return *(last - 1) - *first;
 }
 
 const char *Span::SpanFilledException::what() const throw()
